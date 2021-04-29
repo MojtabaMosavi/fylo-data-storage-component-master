@@ -1,0 +1,223 @@
+@import "variables";
+
+* {
+  font-size: 100%;
+  box-sizing: border-box;
+}
+
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+@mixin center-v-h() {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin center-v() {
+  display: flex;
+  align-items: center;
+}
+
+body {
+  max-width: 23.4375rem;
+  min-height: 100vh;
+  font-family: "Raleway", sans-serif;
+  font-size: 0.875rem;
+  color: $Pale-Blue;
+  background: url("../images/bg-mobile.png") no-repeat center bottom;
+  margin: 0 auto;
+  @include center-v-h();
+  flex-direction: column;
+}
+
+.container {
+  @include center-v-h();
+  flex-direction: column;
+  margin: 0 1.5625rem;
+}
+
+.package {
+  width: 100%;
+  flex: 1 1 12.5rem;
+  padding: 2.5rem;
+  background-color: $Dark-Blue;
+  margin-bottom: 1rem;
+  border-radius: 0.8rem;
+  border-top-right-radius: 6rem;
+
+  &__logo {
+    margin-bottom: 1.8125rem;
+  }
+
+  &__items {
+    list-style: none;
+    @include center-v();
+    padding: 0;
+  }
+
+  &__item {
+    margin-right: 0.875rem;
+    padding: 0.875rem;
+    background-color: $Very-Dark-Blue;
+    border-radius: 0.5rem;
+    max-width: 3rem;
+    max-height: 3rem;
+  }
+}
+
+.card {
+  flex: 1 1 10rem;
+  padding: 2rem;
+  width: 100%;
+  background-color: $Dark-Blue;
+  border-radius: 0.8rem;
+  text-align: center;
+  position: relative;
+
+  &__heading {
+    font-weight: 300;
+    color: $Pale-Blue;
+  }
+  &__progress-bar {
+    height: 1.25rem;
+    background-color: $Very-Dark-Blue;
+    border-radius: 2rem;
+    width: 100%;
+    @include center-v();
+  }
+
+  &__progress-bar-arrow {
+    display: inline-block;
+    height: 0.8rem;
+    background: linear-gradient(to right, $Gradient-from, $Gradient-to);
+    width: 74%;
+    border-radius: 1rem;
+    position: relative;
+    left: 2%;
+  }
+
+  &__progress-bar-arrow::after {
+    content: "";
+    position: absolute;
+    left: 100%;
+    transform: translateX(-140%) translateY(1.5px);
+    height: 0.625rem;
+    width: 0.625rem;
+    background: $Pale-Blue;
+    border-radius: 2rem;
+  }
+
+  &__progress-bar-digit {
+    margin: 0.625rem 0;
+    display: flex;
+    &-left {
+      display: inline-block;
+      margin-right: auto;
+    }
+  }
+
+  &__info {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%);
+    width: 11.1875rem;
+    height: 4.5rem;
+    z-index: 2;
+    background-color: white;
+    border-radius: 0.5rem;
+    font-size: 2.5rem;
+    color: $Very-Dark-Blue;
+    font-weight: 700;
+    @include center-v-h;
+
+    &-right {
+      display: block;
+      font-size: 0.8rem;
+      margin-left: 0.625rem;
+      text-transform: uppercase;
+      color: $Grayish-Blue;
+      font-weight: 300;
+    }
+  }
+}
+
+.text {
+  &_Pale-Blue {
+    color: $Pale-Blue;
+    font-weight: bold;
+  }
+}
+
+.attribution {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: $Very-Dark-Blue;
+}
+
+@media screen and (min-width: 56.25em) {
+  body {
+    max-width: 90rem;
+    background: url("../images/bg-desktop.png") no-repeat center bottom;
+    background-color: $Very-Dark-Blue;
+  }
+
+  .container {
+    flex-direction: row;
+    min-width: 54rem;
+    margin: 0;
+  }
+
+  .package {
+    margin-right: 1.5rem;
+    margin-bottom: 0;
+    flex: 3 1 1rem;
+  }
+
+  .card {
+    flex: 5;
+    text-align: left;
+    align-self: flex-end;
+
+    &__progress-bar-arrow {
+      left: 1%;
+    }
+    &__info {
+      top: 0;
+      left: 55%;
+      transform: translateY(-50%);
+
+      &-right {
+        position: relative;
+      }
+
+      &-right::before {
+        content: "";
+        position: absolute;
+        top: 100%;
+        left: 100%;
+        width: 2rem;
+        height: 2rem;
+        background-color: #fff;
+        transform: rotate(45deg) translateX(50%) translateY(3%);
+      }
+
+      &-right::after {
+        content: "";
+        position: absolute;
+        left: 100%;
+        top: 100%;
+        width: 2rem;
+        height: 3.2rem;
+        background-color: $Dark-Blue;
+        transform: translateX(80%);
+      }
+    }
+  }
+}
